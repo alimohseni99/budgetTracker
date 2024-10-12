@@ -1,0 +1,40 @@
+html {
+  background-color: #2b2d42;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  padding-top: 1rem;
+  color: #d3d2d2;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 10px;
+  gap: 0.2rem;
+  box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.1);
+}
+.addBtn {
+  padding: 5px 10px;
+  margin-left: 10px;
+}
+.submitBtn {
+  padding: 10px 20px;
+  margin: 0.8rem;
+  background-color: #6062a5;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
