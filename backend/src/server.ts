@@ -1,20 +1,13 @@
 import http from "http";
+import { getBudget, Budget } from "./budget";
 
 const port = 3000;
 
 const server = http.createServer((req, res) => {
-  if (req.method === "Method" && req.url === "/count") {
-    let body = "";
-
-    req.on("data", (chunk) => {
-      body += chunk.toSTring();
-    });
-
-    req.on("end", () => {
-      const count = body.split(" ").length;
-      res.end(`Count: ${count}`);
-    });
-  }
+  res.writeHead(200, { "Content-Type": "application/json" });
+  res.end(
+    JSON.stringify(getBudget({ budget: 100, transactions: [10, 20, 30] }))
+  );
 });
 
 server.listen(port, () => {
