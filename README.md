@@ -16,9 +16,4 @@ Budget Tracker is a simple and efficient application to help you manage your fin
 3. Install the dependencies: `npm install`
 
 ## Usage
-
-
-
-
-
-https://excalidraw.com/#json=qGfyJfTy_h4h7LaAIihvU,dm7gb6D1S2rRNRxfEd4eDA
+https://excalidraw.com/#json=nOWdDaPQE_wCKUFdYbZli,Z7fcQeTvr4gP881nTusUiQ
