@@ -1,10 +1,8 @@
 {
-  "name": "budgettracker",
+  "name": "backend",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "backend": "ts-node ./src/backend/server.ts",
-    "frontend": "http-server ./src/frontend",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -12,8 +10,8 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@types/express": "^5.0.0",
     "@types/node": "^22.7.5",
-    "http-server": "^14.1.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.6.3"
   }
