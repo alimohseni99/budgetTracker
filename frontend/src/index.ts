@@ -12,16 +12,18 @@ const income = document.getElementById("income") as HTMLInputElement;
 
 const totalOfExpenses: number[] = [];
 
-const userIncome = document.getElementById("userIncome") as HTMLInputElement;
+const incomeDisplay = document.getElementById(
+  "incomeDisplay"
+) as HTMLInputElement;
 
 const expensesList = document.getElementById("expensesList") as HTMLDivElement;
 
-const totalOfSpending = document.getElementById(
-  "expensesText"
+const totalOfSpendingDisplay = document.getElementById(
+  "totalOfSpendingDisplay"
 ) as HTMLDivElement;
 
-const remainingBudget = document.getElementById(
-  "remainingIncome"
+const remainingBudgetDisplay = document.getElementById(
+  "remainingBudgetDisplay"
 ) as HTMLDivElement;
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -88,7 +90,7 @@ async function getIncome() {
       throw new Error("Failed to fetch income.");
     }
     const data = await response.json();
-    userIncome.textContent = `Your income is: ${data.budget}`;
+    incomeDisplay.textContent = `Your income is: ${data.budget}`;
   } catch (e) {
     console.error(e);
   }
@@ -101,7 +103,7 @@ async function getTotalOfSpending() {
       throw new Error("Failed to fetch total of spending.");
     }
     const data = await response.json();
-    totalOfSpending.textContent = `Total of spending: ${data.total}`;
+    totalOfSpendingDisplay.textContent = `Total of spending: ${data.total}`;
   } catch (e) {
     console.error(e);
   }
@@ -114,7 +116,7 @@ async function getRemainingBudget() {
       throw new Error("Failed to fetch remaining budget.");
     }
     const data = await response.json();
-    remainingBudget.textContent = `Remaining budget: ${data.remaining}`;
+    remainingBudgetDisplay.textContent = `Remaining budget: ${data.remaining}`;
   } catch (e) {
     console.error(e);
   }
@@ -131,7 +133,11 @@ function validateBudgetInputs(): boolean {
   }
 
   for (let i = 0; i < userAmount.length; i++) {
-    if (!userAmount[i].value) {
+    if (
+      !userAmount[i].value ||
+      isNaN(Number(userAmount[i])) ||
+      Number(userAmount[i]) <= 0
+    ) {
       alert("Invalid input, try again!");
       return false;
     }
@@ -143,7 +149,7 @@ if (submitButton) {
   submitButton.onclick = () => {
     if (validateBudgetInputs()) {
       sendBudget();
-      userIncome.textContent = `Your income is: ${income.value}`;
+      incomeDisplay.textContent = `Your income is: ${income.value}`;
       getTransactions();
       getIncome();
       getTotalOfSpending();
