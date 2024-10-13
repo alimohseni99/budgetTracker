@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     addButton.addEventListener("click", () => {
       const newTextField = document.createElement("input");
       newTextField.type = "text";
-      newTextField.id = "amount";
+      newTextField.className = "expenses";
       newTextField.placeholder = "Enter Amount";
       div.appendChild(newTextField);
     });
@@ -16,13 +16,22 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 async function sendBudget() {
-  const amount = document.getElementById("amount") as HTMLInputElement;
+  const amount = document.getElementsByClassName(
+    "expenses"
+  ) as HTMLCollectionOf<HTMLInputElement>;
+
   const submitButton = document.getElementById(
     "submitBtn"
   ) as HTMLButtonElement;
+  const totalOfExpenses: number[] = [];
 
   submitButton.addEventListener("click", () => {
-    console.log("frontend budget: ", parseInt(amount.value));
+    //empty the array before adding new values
+    totalOfExpenses.length = 0;
+
+    for (let i = 0; i < amount.length; i++) {
+      totalOfExpenses.push(Number(amount[i].value));
+    }
   });
   try {
     const reposnse = await fetch("http://localhost:3000/count", {
@@ -32,7 +41,7 @@ async function sendBudget() {
       },
       body: JSON.stringify({
         budget: 1000,
-        transactions: [100, 200, 300],
+        transactions: totalOfExpenses,
       }),
     });
     if (!reposnse.ok) {
