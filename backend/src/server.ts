@@ -20,19 +20,22 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  if (req.url === "/count" && req.method === "POST") {
-    handleCalculateRequest(req, res);
-  } else if (req.url === "/transactions" && req.method === "GET") {
-    handleGetTransactionsRequest(req, res);
-  } else if (req.url === "/TotalOfSpending" && req.method === "GET") {
-    handlecalculateTransactionsRequest(req, res);
-  } else if (req.url === "/income" && req.method === "GET") {
-    handleGetBudgetRequest(req, res);
-  } else if (req.url === "/remaining" && req.method === "GET") {
-    handlGetRemainingRequest(req, res);
-  } else {
-    res.writeHead(404, { "Content-Type": "application/json" });
-    res.end(JSON.stringify({ error: "Not Found" }));
+  switch (true) {
+    case req.url === "/count" && req.method === "POST":
+      handleCalculateRequest(req, res);
+      break;
+    case req.url === "/transactions" && req.method === "GET":
+      handleGetTransactionsRequest(req, res);
+      break;
+    case req.url === "/TotalOfSpending" && req.method === "GET":
+      handlecalculateTransactionsRequest(req, res);
+      break;
+    case req.url === "/remaining" && req.method === "GET":
+      handlGetRemainingRequest(req, res);
+    default:
+      res.writeHead(404, { "Content-Type": "application/json" });
+      res.end(JSON.stringify({ error: "Not Found" }));
+      break;
   }
 });
 
