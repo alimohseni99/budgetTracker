@@ -55,7 +55,7 @@ async function sendBudget() {
       },
       body: JSON.stringify({
         budget: income.value,
-        transactions: totalOfExpenses,
+        expenses: totalOfExpenses,
       }),
     });
 
@@ -79,9 +79,9 @@ async function getTransactions() {
 
     expensesList.innerHTML = "";
 
-    for (let i = 0; i < data.transactions.length; i++) {
+    for (let i = 0; i < data.expenses.length; i++) {
       const transaction = document.createElement("p");
-      transaction.textContent = `Transaction ${i + 1}: ${data.transactions[i]}`;
+      transaction.textContent = `Transaction ${i + 1}: ${data.expenses[i]}`;
       expensesList.appendChild(transaction);
     }
   } catch (e) {
