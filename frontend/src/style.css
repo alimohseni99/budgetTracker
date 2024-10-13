@@ -27,7 +27,12 @@ h1 {
 }
 .addBtn {
   padding: 5px 10px;
-  margin-left: 10px;
+  margin: 0.8rem;
+  background-color: #6062a5;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 .submitBtn {
   padding: 10px 20px;
