@@ -69,7 +69,7 @@ async function sendBudget() {
   }
 }
 
-async function getTransactions() {
+async function getExpenses() {
   try {
     const response = await fetch("http://localhost:3000/expenses");
     if (!response.ok) {
@@ -151,7 +151,7 @@ if (submitButton) {
       submitButton.disabled = true;
       submitButton.textContent = "Submitting...";
       sendBudget();
-      getTransactions();
+      getExpenses();
       getTotalOfSpending();
       getRemainingBudget();
     }

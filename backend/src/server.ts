@@ -3,7 +3,6 @@ import {
   handleCalculateRequest,
   handleGetExpensesRequest,
   handleCalculateExpensesRequest,
-  handlGetRemainingRequest,
 } from "./budgetHandler";
 
 const port = 3000;
@@ -28,9 +27,6 @@ const server = http.createServer((req, res) => {
       break;
     case req.url === "/TotalOfSpending" && req.method === "GET":
       handleCalculateExpensesRequest(req, res);
-      break;
-    case req.url === "/remaining" && req.method === "GET":
-      handlGetRemainingRequest(req, res);
       break;
     default:
       res.writeHead(404, { "Content-Type": "application/json" });

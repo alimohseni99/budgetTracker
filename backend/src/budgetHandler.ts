@@ -58,11 +58,3 @@ export function handleCalculateExpensesRequest(
   res.writeHead(200, { "Content-Type": "application/json" });
   res.end(JSON.stringify({ total }));
 }
-
-export function handlGetRemainingRequest(
-  req: IncomingMessage,
-  res: ServerResponse
-) {
-  res.writeHead(200, { "Content-Type": "application/json" });
-  res.end(JSON.stringify({ remaining }));
-}
