@@ -89,9 +89,11 @@ async function getExpenses() {
   } catch (e) {
     console.error(e);
   } finally {
-    income.value = "0";
+    income.value = "";
+    income.placeholder = "Enter your income";
     for (let i = 0; i < userAmount.length; i++) {
-      userAmount[i].value = "0";
+      userAmount[i].value = "";
+      userAmount[i].placeholder = "Enter Expenses";
     }
     submitButton.disabled = true;
     submitButton.textContent = "submit";
