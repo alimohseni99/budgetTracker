@@ -11,4 +11,10 @@ describe("server testing", () => {
     expect(response.status).toEqual(200);
     expect(response.body.remainings).toBe(40);
   });
+  it("GET transactions should return all transactions", async () => {
+    const response = await request(server).get("/transactions");
+
+    expect(response.status).toEqual(200);
+    expect(response.body.transactions).toEqual([10, 20, 30]);
+  });
 });
