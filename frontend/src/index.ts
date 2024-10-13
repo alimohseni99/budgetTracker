@@ -86,6 +86,13 @@ async function getTransactions() {
     }
   } catch (e) {
     console.error(e);
+  } finally {
+    income.value = "0";
+    for (let i = 0; i < userAmount.length; i++) {
+      userAmount[i].value = "0";
+    }
+    submitButton.disabled = true;
+    submitButton.textContent = "submit";
   }
 }
 
@@ -141,6 +148,8 @@ function validateBudgetInputs(): boolean {
 if (submitButton) {
   submitButton.onclick = () => {
     if (validateBudgetInputs()) {
+      submitButton.disabled = true;
+      submitButton.textContent = "Submitting...";
       sendBudget();
       getTransactions();
       getTotalOfSpending();
