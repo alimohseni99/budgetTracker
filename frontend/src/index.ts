@@ -1,7 +1,16 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const addButton = document.getElementById("addBtn") as HTMLButtonElement;
-  const div = document.getElementById("form") as HTMLDivElement;
+const amount = document.getElementsByClassName(
+  "expenses"
+) as HTMLCollectionOf<HTMLInputElement>;
 
+const addButton = document.getElementById("addBtn") as HTMLButtonElement;
+
+const div = document.getElementById("form") as HTMLDivElement;
+
+const submitButton = document.getElementById("submitBtn") as HTMLButtonElement;
+
+const income = document.getElementById("income") as HTMLInputElement;
+
+document.addEventListener("DOMContentLoaded", () => {
   if (addButton) {
     addButton.addEventListener("click", () => {
       const newTextField = document.createElement("input");
@@ -16,23 +25,14 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 async function sendBudget() {
-  const amount = document.getElementsByClassName(
-    "expenses"
-  ) as HTMLCollectionOf<HTMLInputElement>;
-
-  const submitButton = document.getElementById(
-    "submitBtn"
-  ) as HTMLButtonElement;
   const totalOfExpenses: number[] = [];
 
-  submitButton.addEventListener("click", () => {
-    //empty the array before adding new values
-    totalOfExpenses.length = 0;
+  //empty the array before adding new values
+  totalOfExpenses.length = 0;
 
-    for (let i = 0; i < amount.length; i++) {
-      totalOfExpenses.push(Number(amount[i].value));
-    }
-  });
+  for (let i = 0; i < amount.length; i++) {
+    totalOfExpenses.push(Number(amount[i].value));
+  }
   try {
     const reposnse = await fetch("http://localhost:3000/count", {
       method: "POST",
@@ -40,7 +40,7 @@ async function sendBudget() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        budget: 1000,
+        budget: income.value,
         transactions: totalOfExpenses,
       }),
     });
@@ -54,4 +54,6 @@ async function sendBudget() {
   }
 }
 
-sendBudget();
+if (submitButton) {
+  submitButton.addEventListener("click", sendBudget);
+}
