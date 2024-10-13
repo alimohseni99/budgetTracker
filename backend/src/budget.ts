@@ -10,3 +10,7 @@ export function getBudget(budget: Budget): number {
   const total = budget.transactions.reduce((a, b) => a + b, 0);
   return budget.budget - total;
 }
+
+export function getTransiction(transactions: Budget): number[] {
+  return transactions.transactions;
+}

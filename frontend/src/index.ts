@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 async function sendBudget() {
-  //empty the array before adding new values
+  //empty the array before adding a new value
   totalOfExpenses.length = 0;
 
   for (let i = 0; i < amount.length; i++) {
@@ -59,6 +59,6 @@ async function sendBudget() {
 if (submitButton) {
   submitButton.onclick = () => {
     sendBudget();
-    userIncome.textContent = `Your income is bah: ${income.value}`;
+    userIncome.textContent = `Your income is: ${income.value}`;
   };
 }
