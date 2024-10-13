@@ -45,11 +45,14 @@ h1 {
 }
 .expensesList {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
   padding: 1rem;
   border-radius: 10px;
   gap: 0.2rem;
   color: #d3d2d2;
+  width: 35%;
+  box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.1);
+  margin: 3rem auto;
 }

@@ -10,6 +10,10 @@ const submitButton = document.getElementById("submitBtn") as HTMLButtonElement;
 
 const income = document.getElementById("income") as HTMLInputElement;
 
+const totalOfExpenses: number[] = [];
+
+const userIncome = document.getElementById("userIncome") as HTMLInputElement;
+
 document.addEventListener("DOMContentLoaded", () => {
   if (addButton) {
     addButton.addEventListener("click", () => {
@@ -25,8 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 async function sendBudget() {
-  const totalOfExpenses: number[] = [];
-
   //empty the array before adding new values
   totalOfExpenses.length = 0;
 
@@ -55,5 +57,8 @@ async function sendBudget() {
 }
 
 if (submitButton) {
-  submitButton.addEventListener("click", sendBudget);
+  submitButton.onclick = () => {
+    sendBudget();
+    userIncome.textContent = `Your income is bah: ${income.value}`;
+  };
 }
