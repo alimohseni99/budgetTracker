@@ -77,6 +77,8 @@ async function getTransactions() {
     }
     const data = await response.json();
 
+    expensesList.innerHTML = "";
+
     for (let i = 0; i < data.transactions.length; i++) {
       const transaction = document.createElement("p");
       transaction.textContent = `Transaction ${i + 1}: ${data.transactions[i]}`;
