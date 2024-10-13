@@ -25,5 +25,7 @@ Budget Tracker is a simple and efficient application to help you manage your fin
 8. Start frontend while in frontend directory: `npm start`
 
 ## Big picture plan
+![image](https://github.com/user-attachments/assets/32c5d1f9-b8ce-4e6e-ab14-98161ea081d5)
+
 
 https://excalidraw.com/#json=nOWdDaPQE_wCKUFdYbZli,Z7fcQeTvr4gP881nTusUiQ
