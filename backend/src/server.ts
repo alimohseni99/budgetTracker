@@ -4,6 +4,7 @@ import {
   handleGetTransactionsRequest,
   handlecalculateTransactionsRequest,
   handleGetBudgetRequest,
+  handlGetRemainingRequest,
 } from "./budgetHandler";
 
 const port = 3000;
@@ -27,6 +28,8 @@ const server = http.createServer((req, res) => {
     handlecalculateTransactionsRequest(req, res);
   } else if (req.url === "/income" && req.method === "GET") {
     handleGetBudgetRequest(req, res);
+  } else if (req.url === "/remaining" && req.method === "GET") {
+    handlGetRemainingRequest(req, res);
   } else {
     res.writeHead(404, { "Content-Type": "application/json" });
     res.end(JSON.stringify({ error: "Not Found" }));

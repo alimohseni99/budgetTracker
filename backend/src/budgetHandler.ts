@@ -8,6 +8,7 @@ import {
 
 let transactions: number[] = [];
 let currentBudget: Budget = { budget: 0, transactions: [] };
+let remaining: number = 0;
 
 export function handleCalculateRequest(
   req: IncomingMessage,
@@ -24,7 +25,7 @@ export function handleCalculateRequest(
       const data: Budget = JSON.parse(body);
       currentBudget.budget = data.budget;
       transactions.push(...data.transactions);
-      const remaining = calculateBudget(data);
+      remaining = calculateBudget(data);
 
       res.writeHead(200, { "Content-Type": "application/json" });
       res.end(
@@ -53,10 +54,6 @@ export function handlecalculateTransactionsRequest(
   req: IncomingMessage,
   res: ServerResponse
 ) {
-  console.log(
-    "🚀 ~ handlecalculateTransactionsRequest:",
-    handlecalculateTransactionsRequest
-  );
   const total = calculateTransactions(transactions);
   res.writeHead(200, { "Content-Type": "application/json" });
   res.end(JSON.stringify({ total }));
@@ -67,4 +64,11 @@ export function handleGetBudgetRequest(
 ) {
   res.writeHead(200, { "Content-Type": "application/json" });
   res.end(JSON.stringify({ budget: currentBudget.budget }));
+}
+export function handlGetRemainingRequest(
+  req: IncomingMessage,
+  res: ServerResponse
+) {
+  res.writeHead(200, { "Content-Type": "application/json" });
+  res.end(JSON.stringify({ remaining }));
 }

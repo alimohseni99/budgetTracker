@@ -20,6 +20,10 @@ const totalOfSpending = document.getElementById(
   "expensesText"
 ) as HTMLDivElement;
 
+const remainingBudget = document.getElementById(
+  "remainingIncom"
+) as HTMLDivElement;
+
 document.addEventListener("DOMContentLoaded", () => {
   if (addButton) {
     addButton.addEventListener("click", () => {
@@ -106,6 +110,20 @@ async function getTotalOfSpending() {
   }
 }
 
+async function getRemainingBudget() {
+  try {
+    const response = await fetch("http://localhost:3000/remaining");
+    if (!response.ok) {
+      throw new Error("Failed to fetch remaining budget.");
+    }
+    const data = await response.json();
+    remainingBudget.textContent = `Remaining budget: ${data.remaining}`;
+    console.log(data);
+  } catch (e) {
+    console.error(e);
+  }
+}
+
 if (submitButton) {
   submitButton.onclick = () => {
     sendBudget();
@@ -113,5 +131,6 @@ if (submitButton) {
     getTransactions();
     getIncome();
     getTotalOfSpending();
+    getRemainingBudget();
   };
 }
