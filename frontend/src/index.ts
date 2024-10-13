@@ -16,6 +16,14 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 async function sendBudget() {
+  const amount = document.getElementById("amount") as HTMLInputElement;
+  const submitButton = document.getElementById(
+    "submitBtn"
+  ) as HTMLButtonElement;
+
+  submitButton.addEventListener("click", () => {
+    console.log("frontend budget: ", parseInt(amount.value));
+  });
   try {
     const reposnse = await fetch("http://localhost:3000/count", {
       method: "POST",
