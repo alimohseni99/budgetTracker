@@ -2,7 +2,7 @@ import { IncomingMessage, ServerResponse } from "http";
 import {
   calculateBudget,
   Budget,
-  getexpenses,
+  getExpenses,
   calculateExpenses,
 } from "./budget";
 
@@ -31,7 +31,7 @@ export function handleCalculateRequest(
       res.end(
         JSON.stringify({
           remainings: remaining,
-          expenses: getexpenses(data),
+          expenses: getExpenses(data),
           budget: currentBudget.budget,
         })
       );

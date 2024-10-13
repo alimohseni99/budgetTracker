@@ -11,14 +11,14 @@ describe("calculateBudget", () => {
     const remaining = calculateBudget(budget);
     expect(remaining).toBe(40);
   });
-  it("should throw an error if transactions is not an array", () => {
+  it("should throw an error if expenses is not an array", () => {
     const budget: Budget = {
       budget: 100,
       expenses: 100 as unknown as number[],
     };
 
     expect(() => calculateBudget(budget)).toThrow(
-      "transactions should be an array"
+      "expenses should be an array"
     );
   });
 

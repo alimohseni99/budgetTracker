@@ -11,7 +11,7 @@ export function calculateBudget(budget: Budget): number {
   return budget.budget - total;
 }
 
-export function getexpenses(expenses: Budget): number[] {
+export function getExpenses(expenses: Budget): number[] {
   return expenses.expenses;
 }
 

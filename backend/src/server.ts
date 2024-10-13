@@ -23,7 +23,7 @@ const server = http.createServer((req, res) => {
     case req.url === "/count" && req.method === "POST":
       handleCalculateRequest(req, res);
       break;
-    case req.url === "/transactions" && req.method === "GET":
+    case req.url === "/expenses" && req.method === "GET":
       handleGetExpensesRequest(req, res);
       break;
     case req.url === "/TotalOfSpending" && req.method === "GET":
