@@ -1,5 +1,4 @@
 html {
-  background-color: #2b2d42;
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -28,7 +27,6 @@ h1 {
 .addBtn {
   padding: 5px 10px;
   margin: 0.8rem;
-  background-color: #6062a5;
   color: white;
   border: none;
   border-radius: 5px;
@@ -37,7 +35,6 @@ h1 {
 .submitBtn {
   padding: 10px 20px;
   margin: 0.8rem;
-  background-color: #6062a5;
   color: white;
   border: none;
   border-radius: 5px;
