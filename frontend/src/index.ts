@@ -1,7 +1,6 @@
 const userAmount = document.getElementsByClassName(
   "userExpenses"
 ) as HTMLCollectionOf<HTMLInputElement>;
-console.log("🚀 ~ userAmount:", userAmount);
 
 const addButton = document.getElementById("addBtn") as HTMLButtonElement;
 
@@ -22,7 +21,7 @@ const totalOfSpending = document.getElementById(
 ) as HTMLDivElement;
 
 const remainingBudget = document.getElementById(
-  "remainingIncom"
+  "remainingIncome"
 ) as HTMLDivElement;
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -121,20 +120,34 @@ async function getRemainingBudget() {
   }
 }
 
-function validateBudgetInputs() {
-  if (userAmount.length === 0) {
-    console.log("not working");
+function validateBudgetInputs(): boolean {
+  if (
+    !income.value ||
+    isNaN(Number(income.value)) ||
+    Number(income.value) <= 0
+  ) {
+    alert("Invalid input, try again!");
+    return false;
   }
+
+  for (let i = 0; i < userAmount.length; i++) {
+    if (!userAmount[i].value) {
+      alert("Invalid input, try again!");
+      return false;
+    }
+  }
+  return true;
 }
 
 if (submitButton) {
   submitButton.onclick = () => {
-    sendBudget();
-    userIncome.textContent = `Your income is: ${income.value}`;
-    getTransactions();
-    getIncome();
-    getTotalOfSpending();
-    getRemainingBudget();
-    validateBudgetInputs();
+    if (validateBudgetInputs()) {
+      sendBudget();
+      userIncome.textContent = `Your income is: ${income.value}`;
+      getTransactions();
+      getIncome();
+      getTotalOfSpending();
+      getRemainingBudget();
+    }
   };
 }
