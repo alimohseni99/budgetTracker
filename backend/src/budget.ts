@@ -15,9 +15,6 @@ export function getTransactions(transactions: Budget): number[] {
   return transactions.transactions;
 }
 
-export function getBudget(budget: Budget): number {
-  return budget.budget;
-}
 export function calculateTransactions(transactions: number[]): number {
   return transactions.reduce((acc, curr) => acc + curr, 0);
 }

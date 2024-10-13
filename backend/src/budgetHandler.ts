@@ -2,13 +2,12 @@ import { IncomingMessage, ServerResponse } from "http";
 import {
   calculateBudget,
   Budget,
-  getBudget,
   getTransactions,
   calculateTransactions,
 } from "./budget";
 
 let transactions: number[] = [];
-let body = "";
+let currentBudget: Budget = { budget: 0, transactions: [] };
 
 // take out parsebody and make a function of it later for recfactoring
 
@@ -16,21 +15,25 @@ export function handleCalculateRequest(
   req: IncomingMessage,
   res: ServerResponse
 ) {
+  let body = "";
+
   req.on("data", (chunk) => {
     body += chunk.toString();
   });
 
   req.on("end", () => {
     try {
-      const budget: Budget = JSON.parse(body);
-      const remaining = calculateBudget(budget);
-      transactions.push(...budget.transactions);
+      const data: Budget = JSON.parse(body);
+      currentBudget.budget = data.budget;
+      transactions.push(...data.transactions);
+      const remaining = calculateBudget(data);
 
       res.writeHead(200, { "Content-Type": "application/json" });
       res.end(
         JSON.stringify({
           remainings: remaining,
-          transactions: getTransactions(budget),
+          transactions: getTransactions(data),
+          budget: currentBudget.budget,
         })
       );
     } catch (e) {
@@ -64,7 +67,6 @@ export function handleGetBudgetRequest(
   req: IncomingMessage,
   res: ServerResponse
 ) {
-  const budget: Budget = JSON.parse(body);
   res.writeHead(200, { "Content-Type": "application/json" });
-  res.end(JSON.stringify({ budget: budget.budget }));
+  res.end(JSON.stringify({ budget: currentBudget.budget }));
 }
