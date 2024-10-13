@@ -17,4 +17,10 @@ describe("server testing", () => {
     expect(response.status).toEqual(200);
     expect(response.body.transactions).toEqual([10, 20, 30]);
   });
+  it("GET TotalOfSpending should return total of all transactions", async () => {
+    const response = await request(server).get("/TotalOfSpending");
+
+    expect(response.status).toEqual(200);
+    expect(response.body.total).toBe(60);
+  });
 });
