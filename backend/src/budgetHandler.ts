@@ -9,8 +9,6 @@ import {
 let transactions: number[] = [];
 let currentBudget: Budget = { budget: 0, transactions: [] };
 
-// take out parsebody and make a function of it later for recfactoring
-
 export function handleCalculateRequest(
   req: IncomingMessage,
   res: ServerResponse
