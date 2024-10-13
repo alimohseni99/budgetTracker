@@ -2,6 +2,9 @@
 
 Budget Tracker is a simple and efficient application to help you manage your finances. It allows you to track your income, expenses, and monitor your balance over time.
 
+![image](https://github.com/user-attachments/assets/64be303f-6d39-4129-9d1d-5693aece5931)
+
+
 ## Table of Contents
 
 - [Features](#features)
