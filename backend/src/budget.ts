@@ -11,17 +11,13 @@ export function calculateBudget(budget: Budget): number {
   return budget.budget - total;
 }
 
-export function getTransiction(transactions: Budget): number[] {
+export function getTransactions(transactions: Budget): number[] {
   return transactions.transactions;
 }
 
 export function getBudget(budget: Budget): number {
   return budget.budget;
 }
-export function calculateTransiction(transactions: Budget): number {
-  if (!transactions.transactions || !Array.isArray(transactions.transactions)) {
-    throw new Error("transactions should be an array");
-  } else {
-    return transactions.transactions.reduce((a, b) => a + b, 0);
-  }
+export function calculateTransactions(transactions: number[]): number {
+  return transactions.reduce((acc, curr) => acc + curr, 0);
 }

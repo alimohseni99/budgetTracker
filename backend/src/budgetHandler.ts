@@ -3,16 +3,19 @@ import {
   calculateBudget,
   Budget,
   getBudget,
-  getTransiction,
-  calculateTransiction,
+  getTransactions,
+  calculateTransactions,
 } from "./budget";
+
+let transactions: number[] = [];
+let body = "";
+
+// take out parsebody and make a function of it later for recfactoring
 
 export function handleCalculateRequest(
   req: IncomingMessage,
   res: ServerResponse
 ) {
-  let body = "";
-
   req.on("data", (chunk) => {
     body += chunk.toString();
   });
@@ -21,17 +24,13 @@ export function handleCalculateRequest(
     try {
       const budget: Budget = JSON.parse(body);
       const remaining = calculateBudget(budget);
-      const transactions = getTransiction(budget);
-      const totalBudget = getBudget(budget);
-      const totalTransiction = calculateTransiction(budget);
+      transactions.push(...budget.transactions);
 
       res.writeHead(200, { "Content-Type": "application/json" });
       res.end(
         JSON.stringify({
           remainings: remaining,
-          transactions: transactions,
-          totalBudget: totalBudget,
-          totalBudgetTransiction: totalTransiction,
+          transactions: getTransactions(budget),
         })
       );
     } catch (e) {
@@ -41,26 +40,31 @@ export function handleCalculateRequest(
   });
 }
 
-export function handleGetTransictions(
+export function handleGetTransactionsRequest(
   req: IncomingMessage,
   res: ServerResponse
 ) {
-  let body = "";
+  res.writeHead(200, { "Content-Type": "application/json" });
+  res.end(JSON.stringify({ transactions }));
+}
 
-  req.on("data", (chunk) => {
-    body += chunk.toString();
-  });
-
-  req.on("end", () => {
-    try {
-      const budget: Budget = JSON.parse(body);
-      const transactions = getTransiction(budget);
-
-      res.writeHead(200, { "Content-Type": "application/json" });
-      res.end(JSON.stringify({ transactions: transactions }));
-    } catch (e) {
-      res.writeHead(400, { "Content-Type": "application/json" });
-      res.end(JSON.stringify({ error: "Invalid JSON format" }));
-    }
-  });
+export function handlecalculateTransactionsRequest(
+  req: IncomingMessage,
+  res: ServerResponse
+) {
+  console.log(
+    "🚀 ~ handlecalculateTransactionsRequest:",
+    handlecalculateTransactionsRequest
+  );
+  const total = calculateTransactions(transactions);
+  res.writeHead(200, { "Content-Type": "application/json" });
+  res.end(JSON.stringify({ total }));
+}
+export function handleGetBudgetRequest(
+  req: IncomingMessage,
+  res: ServerResponse
+) {
+  const budget: Budget = JSON.parse(body);
+  res.writeHead(200, { "Content-Type": "application/json" });
+  res.end(JSON.stringify({ budget: budget.budget }));
 }

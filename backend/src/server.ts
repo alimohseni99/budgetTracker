@@ -1,5 +1,10 @@
 import http from "http";
-import { handleCalculateRequest } from "./budgetHandler";
+import {
+  handleCalculateRequest,
+  handleGetTransactionsRequest,
+  handlecalculateTransactionsRequest,
+  handleGetBudgetRequest,
+} from "./budgetHandler";
 
 const port = 3000;
 
@@ -16,6 +21,12 @@ const server = http.createServer((req, res) => {
 
   if (req.url === "/count" && req.method === "POST") {
     handleCalculateRequest(req, res);
+  } else if (req.url === "/transactions" && req.method === "GET") {
+    handleGetTransactionsRequest(req, res);
+  } else if (req.url === "/TotalOfSpending" && req.method === "GET") {
+    handlecalculateTransactionsRequest(req, res);
+  } else if (req.url === "/budget" && req.method === "GET") {
+    handleGetBudgetRequest(req, res);
   } else {
     res.writeHead(404, { "Content-Type": "application/json" });
     res.end(JSON.stringify({ error: "Not Found" }));
