@@ -64,6 +64,8 @@ async function sendBudget() {
     }
     const data = await response.json();
     incomeDisplay.textContent = `Your income is: ${data.budget}`;
+    remainingBudgetDisplay.textContent = `Remaining budget: ${data.remainings}`;
+    console.log(data);
   } catch (e) {
     console.error(e);
   }
@@ -109,19 +111,6 @@ async function getTotalOfSpending() {
   }
 }
 
-async function getRemainingBudget() {
-  try {
-    const response = await fetch("http://localhost:3000/remaining");
-    if (!response.ok) {
-      throw new Error("Failed to fetch remaining budget.");
-    }
-    const data = await response.json();
-    remainingBudgetDisplay.textContent = `Remaining budget: ${data.remaining}`;
-  } catch (e) {
-    console.error(e);
-  }
-}
-
 function validateBudgetInputs(): boolean {
   if (
     !income.value ||
@@ -153,7 +142,6 @@ if (submitButton) {
       sendBudget();
       getExpenses();
       getTotalOfSpending();
-      getRemainingBudget();
     }
   };
 }
