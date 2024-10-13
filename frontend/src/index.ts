@@ -58,9 +58,12 @@ async function sendBudget() {
         transactions: totalOfExpenses,
       }),
     });
+
     if (!response.ok) {
       throw new Error("Failed to send request.");
     }
+    const data = await response.json();
+    incomeDisplay.textContent = `Your income is: ${data.budget}`;
   } catch (e) {
     console.error(e);
   }
@@ -79,18 +82,6 @@ async function getTransactions() {
       transaction.textContent = `Transaction ${i + 1}: ${data.transactions[i]}`;
       expensesList.appendChild(transaction);
     }
-  } catch (e) {
-    console.error(e);
-  }
-}
-async function getIncome() {
-  try {
-    const response = await fetch("http://localhost:3000/income");
-    if (!response.ok) {
-      throw new Error("Failed to fetch income.");
-    }
-    const data = await response.json();
-    incomeDisplay.textContent = `Your income is: ${data.budget}`;
   } catch (e) {
     console.error(e);
   }
@@ -135,8 +126,8 @@ function validateBudgetInputs(): boolean {
   for (let i = 0; i < userAmount.length; i++) {
     if (
       !userAmount[i].value ||
-      isNaN(Number(userAmount[i])) ||
-      Number(userAmount[i]) <= 0
+      isNaN(Number(userAmount[i].value)) ||
+      Number(userAmount[i].value) <= 0
     ) {
       alert("Invalid input, try again!");
       return false;
@@ -149,9 +140,7 @@ if (submitButton) {
   submitButton.onclick = () => {
     if (validateBudgetInputs()) {
       sendBudget();
-      incomeDisplay.textContent = `Your income is: ${income.value}`;
       getTransactions();
-      getIncome();
       getTotalOfSpending();
       getRemainingBudget();
     }
