@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const newTextField = document.createElement("input");
       newTextField.type = "text";
       newTextField.className = "userExpenses";
-      newTextField.placeholder = "Enter userAmopunt";
+      newTextField.placeholder = "Enter Expenses";
       div.appendChild(newTextField);
     });
   } else {
