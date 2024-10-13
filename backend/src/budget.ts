@@ -3,7 +3,7 @@ export interface Budget {
   transactions: number[];
 }
 
-export function getBudget(budget: Budget): number {
+export function calculateBudget(budget: Budget): number {
   if (!budget.transactions || !Array.isArray(budget.transactions)) {
     throw new Error("transactions should be an array");
   }
@@ -13,4 +13,15 @@ export function getBudget(budget: Budget): number {
 
 export function getTransiction(transactions: Budget): number[] {
   return transactions.transactions;
+}
+
+export function getBudget(budget: Budget): number {
+  return budget.budget;
+}
+export function calculateTransiction(transactions: Budget): number {
+  if (!transactions.transactions || !Array.isArray(transactions.transactions)) {
+    throw new Error("transactions should be an array");
+  } else {
+    return transactions.transactions.reduce((a, b) => a + b, 0);
+  }
 }
