@@ -25,7 +25,7 @@ const server = http.createServer((req, res) => {
     handleGetTransactionsRequest(req, res);
   } else if (req.url === "/TotalOfSpending" && req.method === "GET") {
     handlecalculateTransactionsRequest(req, res);
-  } else if (req.url === "/budget" && req.method === "GET") {
+  } else if (req.url === "/income" && req.method === "GET") {
     handleGetBudgetRequest(req, res);
   } else {
     res.writeHead(404, { "Content-Type": "application/json" });
