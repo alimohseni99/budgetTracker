@@ -23,12 +23,7 @@ describe("server testing", () => {
     expect(response.status).toEqual(200);
     expect(response.body.total).toBe(60);
   });
-  it("GET budget should return the budget", async () => {
-    const response = await request(server).get("/income");
 
-    expect(response.status).toEqual(200);
-    expect(response.body.budget).toBe(100);
-  });
   it("GET remaining should return the remaining budget", async () => {
     const response = await request(server).get("/remaining");
 

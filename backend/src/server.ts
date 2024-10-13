@@ -32,6 +32,7 @@ const server = http.createServer((req, res) => {
       break;
     case req.url === "/remaining" && req.method === "GET":
       handlGetRemainingRequest(req, res);
+      break;
     default:
       res.writeHead(404, { "Content-Type": "application/json" });
       res.end(JSON.stringify({ error: "Not Found" }));
