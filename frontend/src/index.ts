@@ -1,6 +1,7 @@
-const userAmopunt = document.getElementsByClassName(
+const userAmount = document.getElementsByClassName(
   "userExpenses"
 ) as HTMLCollectionOf<HTMLInputElement>;
+console.log("🚀 ~ userAmount:", userAmount);
 
 const addButton = document.getElementById("addBtn") as HTMLButtonElement;
 
@@ -42,11 +43,11 @@ async function sendBudget() {
   //empty the array before adding a new value
   totalOfExpenses.length = 0;
 
-  for (let i = 0; i < userAmopunt.length; i++) {
-    totalOfExpenses.push(Number(userAmopunt[i].value));
+  for (let i = 0; i < userAmount.length; i++) {
+    totalOfExpenses.push(Number(userAmount[i].value));
   }
   try {
-    const reposnse = await fetch("http://localhost:3000/count", {
+    const response = await fetch("http://localhost:3000/count", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -56,11 +57,9 @@ async function sendBudget() {
         transactions: totalOfExpenses,
       }),
     });
-    if (!reposnse.ok) {
+    if (!response.ok) {
       throw new Error("Failed to send request.");
     }
-    const data = await reposnse.json();
-    console.log(data);
   } catch (e) {
     console.error(e);
   }
@@ -104,7 +103,6 @@ async function getTotalOfSpending() {
     }
     const data = await response.json();
     totalOfSpending.textContent = `Total of spending: ${data.total}`;
-    console.log(data);
   } catch (e) {
     console.error(e);
   }
@@ -118,9 +116,14 @@ async function getRemainingBudget() {
     }
     const data = await response.json();
     remainingBudget.textContent = `Remaining budget: ${data.remaining}`;
-    console.log(data);
   } catch (e) {
     console.error(e);
+  }
+}
+
+function validateBudgetInputs() {
+  if (userAmount.length === 0) {
+    console.log("not working");
   }
 }
 
@@ -132,5 +135,6 @@ if (submitButton) {
     getIncome();
     getTotalOfSpending();
     getRemainingBudget();
+    validateBudgetInputs();
   };
 }
