@@ -1,20 +1,20 @@
 export interface Budget {
   budget: number;
-  transactions: number[];
+  expenses: number[];
 }
 
 export function calculateBudget(budget: Budget): number {
-  if (!budget.transactions || !Array.isArray(budget.transactions)) {
-    throw new Error("transactions should be an array");
+  if (!budget.expenses || !Array.isArray(budget.expenses)) {
+    throw new Error("expenses should be an array");
   }
-  const total = budget.transactions.reduce((a, b) => a + b, 0);
+  const total = budget.expenses.reduce((a, b) => a + b, 0);
   return budget.budget - total;
 }
 
-export function getTransactions(transactions: Budget): number[] {
-  return transactions.transactions;
+export function getexpenses(expenses: Budget): number[] {
+  return expenses.expenses;
 }
 
-export function calculateTransactions(transactions: number[]): number {
-  return transactions.reduce((acc, curr) => acc + curr, 0);
+export function calculateExpenses(expenses: number[]): number {
+  return expenses.reduce((acc, curr) => acc + curr, 0);
 }

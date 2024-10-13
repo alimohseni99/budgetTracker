@@ -1,9 +1,8 @@
 import http from "http";
 import {
   handleCalculateRequest,
-  handleGetTransactionsRequest,
-  handlecalculateTransactionsRequest,
-  handleGetBudgetRequest,
+  handleGetExpensesRequest,
+  handleCalculateExpensesRequest,
   handlGetRemainingRequest,
 } from "./budgetHandler";
 
@@ -25,10 +24,10 @@ const server = http.createServer((req, res) => {
       handleCalculateRequest(req, res);
       break;
     case req.url === "/transactions" && req.method === "GET":
-      handleGetTransactionsRequest(req, res);
+      handleGetExpensesRequest(req, res);
       break;
     case req.url === "/TotalOfSpending" && req.method === "GET":
-      handlecalculateTransactionsRequest(req, res);
+      handleCalculateExpensesRequest(req, res);
       break;
     case req.url === "/remaining" && req.method === "GET":
       handlGetRemainingRequest(req, res);

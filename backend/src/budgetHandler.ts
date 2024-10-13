@@ -2,12 +2,12 @@ import { IncomingMessage, ServerResponse } from "http";
 import {
   calculateBudget,
   Budget,
-  getTransactions,
-  calculateTransactions,
+  getexpenses,
+  calculateExpenses,
 } from "./budget";
 
-let transactions: number[] = [];
-let currentBudget: Budget = { budget: 0, transactions: [] };
+let expenses: number[] = [];
+let currentBudget: Budget = { budget: 0, expenses: [] };
 let remaining: number = 0;
 
 export function handleCalculateRequest(
@@ -24,14 +24,14 @@ export function handleCalculateRequest(
     try {
       const data: Budget = JSON.parse(body);
       currentBudget.budget = data.budget;
-      transactions.push(...data.transactions);
+      expenses.push(...data.expenses);
       remaining = calculateBudget(data);
 
       res.writeHead(200, { "Content-Type": "application/json" });
       res.end(
         JSON.stringify({
           remainings: remaining,
-          transactions: getTransactions(data),
+          expenses: getexpenses(data),
           budget: currentBudget.budget,
         })
       );
@@ -42,29 +42,23 @@ export function handleCalculateRequest(
   });
 }
 
-export function handleGetTransactionsRequest(
+export function handleGetExpensesRequest(
   req: IncomingMessage,
   res: ServerResponse
 ) {
   res.writeHead(200, { "Content-Type": "application/json" });
-  res.end(JSON.stringify({ transactions }));
+  res.end(JSON.stringify({ expenses }));
 }
 
-export function handlecalculateTransactionsRequest(
+export function handleCalculateExpensesRequest(
   req: IncomingMessage,
   res: ServerResponse
 ) {
-  const total = calculateTransactions(transactions);
+  const total = calculateExpenses(expenses);
   res.writeHead(200, { "Content-Type": "application/json" });
   res.end(JSON.stringify({ total }));
 }
-export function handleGetBudgetRequest(
-  req: IncomingMessage,
-  res: ServerResponse
-) {
-  res.writeHead(200, { "Content-Type": "application/json" });
-  res.end(JSON.stringify({ budget: currentBudget.budget }));
-}
+
 export function handlGetRemainingRequest(
   req: IncomingMessage,
   res: ServerResponse
