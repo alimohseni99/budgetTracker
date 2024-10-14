@@ -29,6 +29,6 @@ Budget Tracker is a simple and efficient application to help you manage your fin
 
 ## Big picture plan
 ![image](https://github.com/user-attachments/assets/32c5d1f9-b8ce-4e6e-ab14-98161ea081d5)
+[
 
-
-https://excalidraw.com/#json=nOWdDaPQE_wCKUFdYbZli,Z7fcQeTvr4gP881nTusUiQ
+https://excalidraw.com/#json=nOWdDaPQE_wCKUFdYbZli,Z7fcQeTvr4gP881nTusUiQ](https://excalidraw.com/#json=-YrHZEL41WHbr-1WPOqsA,HfgxAA15eoQkAcVbmJhihA)
